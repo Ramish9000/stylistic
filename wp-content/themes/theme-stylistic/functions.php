@@ -126,29 +126,25 @@ function remove_width_attribute( $html ) {
 	return $html;
 }
 
-// CUSTOM >> Change order of custom post type
-// function jetpack_menu_order( $menu_order ) {
-// 	$jp_menu_order = array();
+// DEREGISTER CUSTOM POST TYPE
+function delete_post_type(){
+    unregister_post_type( 'header' );
+}
+add_action('init','delete_post_type');
 
-// 	foreach ( $menu_order as $index => $item ) {
-// 		if ( $item != 'jetpack' )
-// 			$jp_menu_order[] = $item;
+remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
+remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
+function my_theme_wrapper_start() {
+  echo '<section id="main">';
+}
 
-// 		if ( $index == 0 )
-// 			$jp_menu_order[] = 'jetpack';
-// 	}
-
-// 	return $jp_menu_order;
-// }
-
-// CUSTOM >> MOVE CUSTOM POST TYPE POSITION
-// function my_move_post () {
-//     global $menu;
-//     $menu[10] = $menu[13]; //move post from post 5 to 6
-//     unset($menu[13]); //free the position 5 so you can use it!
-// }
-// add_action('admin_menu', 'my_move_post');
-
+function my_theme_wrapper_end() {
+  echo '</section>';
+}
+add_action( 'after_setup_theme', 'woocommerce_support' );
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
 /**
  * Implement the Custom Header feature.
  */

@@ -9,19 +9,15 @@
 
 get_header(); ?>
 
+<body class="gridlock SINGLE">
 
-<body class="gridlock">
-
-	<!-- MENU -->
-	<?php require_once('templates/menu.php') ?>
-
-	<div class="page-wrap">
+	<div class="page-wrap" style="min-height: unset;">
 
 		<!-- TOP MENU -->
 		<?php require_once('page-header.php') ?>
 
 		<!-- *************************** -->
-		<!-- 				SINGLE BRAND      	 -->
+		<!-- 		SINGLE BRAND 		 -->
 		<!-- *************************** -->
 
 		<?php
@@ -33,263 +29,236 @@ get_header(); ?>
 			);              
 
 		$query_related_brand_items = new WP_Query( $args_related_brand );
-		if($query_related_brand_items->have_posts() ) { ?>
 
-		<div class="row" id="content">
+		if($query_related_brand_items->have_posts() ) { 
 
-			<div class="desktop-12 mobile-3 tablet-6" id="breadcrumb">
+			?>
 
-				<a class="homepage-link" href="home" title="Home">Home</a>
+			<div class="row">
 
-				<span class="separator">/</span>
+				<div class="desktop-12 tablet-6 mobile-3" id="breadcrumb">
 
-				<span class="page-title"><?php echo the_title(); ?> | Pakistani Dresses | Latest Fashion</span>
+					<a class="homepage-link" href="home" title="Home">Home</a>
 
-			</div>
+					<span class="separator">/</span>
 
-			<div class="clear"></div>
-
-			<div class="desktop-12 tablet-6 mobile-3" id="collection-description">
-
-				<h1><?php the_title(); ?></h1>
-
-				<div class="rte"></div>
-
-			</div>
-
-			<div class="clear"></div>
-
-			<div class="desktop-12 tablet-6 mobile-3">
-
-				<div class="desktop-12 tablet-6 mobile-3" id="full-width-filter" style="visibility: hidden;">
-
-					<ul id="sortme">
-
-						<li class="filter">
-
-							<p>Sort by</p>
-
-							<select class="styled-select" id="sort-by">
-
-								<option value="manual">
-									Featured
-								</option>
-
-								<option value="price-ascending">
-									Price, low to high
-								</option>
-
-								<option value="price-descending">
-									Price, high to low
-								</option>
-
-								<option value="title-ascending">
-									Alphabetically, A-Z
-								</option>
-
-								<option value="title-descending">
-									Alphabetically, Z-A
-								</option>
-
-								<option value="created-ascending">
-									Date, old to new
-								</option>
-
-								<option value="created-descending">
-									Date, new to old
-								</option>
-
-								<option value="best-selling">
-									Best Selling
-								</option>
-
-							</select>
-
-						</li>
-
-					</ul>
+					<span class="page-title"><?php echo the_title(); ?> | Pakistani Dresses | Latest Fashion</span>
 
 				</div>
 
-				<div id="product-loop">
+				<div class="clear"></div>
 
-					<!-- SINGLE BRAND (Below code displays all child clothes of that brand) -->
-					<?php while ( $query_related_brand_items->have_posts() ) {
+				<div class="desktop-12 tablet-6 mobile-3" id="collection-description">
 
-						$query_related_brand_items->the_post(); 
+					<h1><?php the_title(); ?></h1>
 
-						?>
+					<div class="rte"></div>
 
-						<div class="product-index col-md-4 col-sm-6 col-xs-6" data-alpha="<?php echo the_title(); ?>" data-price="6500" id="">
+				</div>
 
-							<div class="product-index-inner"></div>
+				<div class="clear"></div>
 
-							<div class="prod-image single-prod-image">
+				<div class="desktop-12 tablet-6 mobile-3">
 
-								<a href="<?php echo the_permalink(); ?>" title="<?php echo the_title(); ?>">
+					<div id="product-loop">
 
-									<?php echo the_post_thumbnail(); ?>
+						<!-- SINGLE BRAND (Below code displays all child clothes of that brand) -->
+						<?php while ( $query_related_brand_items->have_posts() ) {
 
-								</a> 
+							$query_related_brand_items->the_post(); 
 
-								<a class="fancybox.ajax product-modal" href="">QUICK VIEW</a>
+							?>
 
-							</div>
+							<div class="product-index desktop-4 tablet-half mobile-half" data-alpha="<?php echo the_title(); ?>" data-price="6500" id="">
 
-							<div class="product-info">
+								<div class="product-index-inner"></div>
 
-								<div class="product-info-inner">
+								<div class="prod-image single-prod-image">
 
-									<a href="">
+									<a href="<?php echo the_permalink(); ?>" title="<?php echo the_title(); ?>">
 
-										<h3><?php echo the_title(); ?></h3>
+										<?php echo the_post_thumbnail(); ?>
 
-									</a>
+									</a> 
 
-									<div class="price">
+									<a class="fancybox.ajax product-modal" href="<?php echo the_permalink(); ?>">QUICK VIEW</a>
 
-										<div class="prod-price">
+								</div> <!-- END prod-image -->
 
-											<span class="money">£<?php echo the_field('price'); ?> GBP</span>
+								<div class="product-info">
 
-										</div>
+									<div class="product-info-inner">
 
-									</div>
+										<a href="">
 
-								</div>
+											<h3><?php echo the_title(); ?></h3>
 
-							</div>
+										</a>
 
-						</div>
+										<div class="price">
 
-					</div>
+											<div class="prod-price">
+
+												<span class="money">£<?php echo the_field('price'); ?> GBP</span>
+
+											</div>
+
+										</div> <!-- END price -->
+
+									</div> <!-- END product-info-inner -->
+
+								</div> <!-- END product-info -->
+
+							</div> <!-- END product-index -->
+
+							<?php }
+
+						} ?>
+
+					</div> <!-- END Product Loop -->
 
 				</div>
 
 			</div> 
+			
 
-			<?php }
+			<!-- *************************** -->
+			<!-- 				SINGLE CLOTHING      -->
+			<!-- *************************** -->
 
-		} ?>
+			<?php 
 
-		<!-- *************************** -->
-		<!-- 				SINGLE CLOTHING      -->
-		<!-- *************************** -->
+			if(!($query_related_brand_items->have_posts() )) { 
 
-		<?php 
+			if (have_posts()) { 
 
-		if (have_posts()) { 
+				while (have_posts()) { 
 
-			while (have_posts()) { 
+					the_post(); ?>
 
-				the_post(); ?>
+					<div class="row">
 
-				<div class="row" id="content">
+						<div class="desktop-12 mobile-3 tablet-6" id="breadcrumb">
 
-					<div class="desktop-12 mobile-3 tablet-6" id="breadcrumb">
+							<a class="homepage-link" href="home" title="Home">Home</a>
 
-						<a class="homepage-link" href="home" title="Home">Home</a>
+							<span class="separator">/</span>
 
-						<span class="separator">/</span>
+							<span class="page-title">Pakistani Dresses | Latest Fashion | <?php echo the_title(); ?></span>
 
-						<span class="page-title">Pakistani Dresses | Latest Fashion | <?php echo the_title(); ?></span>
+						</div>
 
-					</div>
+						<div class="clear"></div>
 
-					<div class="clear"></div>
+						<div class="desktop-12 tablet-6 mobile-3" id="collection-description">
 
-					<div class="desktop-12 tablet-6 mobile-3" id="collection-description">
+							<h1><?php the_title(); ?></h1>
 
-						<h1><?php the_title(); ?></h1>
+							<div class="rte"></div>
 
-						<div class="rte"></div>
+						</div>
 
-					</div>
-
-					<div class="mlvedaform">
+						<div class="mlvedaform">
 
 							<!-- For Mobile -->
 							<div class="desktop-12 tablet-6 mobile-3" id="mobile-product">
 
 								<ul class="bxslider">
 
-									<li><img alt="" data-image-id="" src="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_2_1024x1024.jpg?v=1496781038">
-									</li>
+									<!-- GALLERY -->
+									<?php $images = get_field('gallery');
 
+									if( $images ): ?>
 
-									<li><img alt="Chinese Whispers" data-image-id="22472423425" src="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_2_1024x1024.jpg?v=1496781038">
-									</li>
+									<?php foreach( $images as $image ): ?>
 
+										<li>
 
-									<li><img alt="Chinese Whispers" data-image-id="22472420673" src="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_1_1024x1024.jpg?v=1496781038">
-									</li>
+											<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
 
+										</li>
 
-									<li><img alt="Chinese Whispers" data-image-id="22472424321" src="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_3_1024x1024.jpg?v=1496781038">
-									</li>
+									<?php endforeach; ?>
 
+								<?php endif; ?>
 
-									<li><img alt="Chinese Whispers" data-image-id="22472425025" src="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_4_1024x1024.jpg?v=1496781038">
-									</li>
-								</ul>
+							</ul>
 
-							</div>
-							<!-- For Desktop -->
-							<div class="desktop-7 tablet-3 mobile-3" id="product-photos">
+						</div>
+						<!-- For Desktop -->
+						<div class="desktop-7 tablet-3 mobile-3" id="product-photos">
 
-								<div class="bigimage desktop-10 tablet-5">
+							<div class="bigimage desktop-10 tablet-5">
 
-									<img alt='' data-image-id="" data-zoom-image="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_2.jpg?v=1496781038" id="9654330049" src="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_2_1024x1024.jpg?v=1496781038" title="Chinese Whispers">
+								<?php $big_images = get_field('gallery');
 
-								</div>
+								$BI_i = 1;
 
-								<div class="desktop-2 tablet-1" id="9654330049-gallery">
+								if( $big_images ){ 
 
-									<div class="thumbnail-slider">
+									foreach( $big_images as $big_image ){ 
 
-										<div class="slide">
-											<a data-image="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_2_1024x1024.jpg?v=1496781038" data-image-id="22472423425" data-zoom-image="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_2.jpg?v=1496781038" href="#"><img alt="Chinese Whispers" class="thumbnail" data-image-id="22472423425" src="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_2_compact.jpg?v=1496781038"></a>
-										</div>
+										if ($BI_i === 1) { ?>
 
+										<!-- BIG IMAGE-->
+										<!-- <img data-image-id="" data-zoom-image="" src="<?php echo $big_image['url']; ?>" > -->
+										<img alt='' data-image-id="" data-zoom-image="<?php echo $big_image['url']; ?>" id="9654330049" src="<?php echo $big_image['url']; ?>" title="Chinese Whispers">
 
-										<div class="slide">
-											<a data-image="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_1_1024x1024.jpg?v=1496781038" data-image-id="22472420673" data-zoom-image="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_1.jpg?v=1496781038" href="#"><img alt="Chinese Whispers" class="thumbnail" data-image-id="22472420673" src="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_1_compact.jpg?v=1496781038"></a>
-										</div>
+										<?php $BI_i++; } }; ?>
 
+										<?php }; ?>
 
-										<div class="slide">
-											<a data-image="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_3_1024x1024.jpg?v=1496781038" data-image-id="22472424321" data-zoom-image="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_3.jpg?v=1496781038" href="#"><img alt="Chinese Whispers" class="thumbnail" data-image-id="22472424321" src="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_3_compact.jpg?v=1496781038"></a>
-										</div>
+									</div>
 
+									<div class="desktop-2 tablet-1" id="9654330049-gallery">
 
-										<div class="slide">
-											<a data-image="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_4_1024x1024.jpg?v=1496781038" data-image-id="22472425025" data-zoom-image="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_4.jpg?v=1496781038" href="#"><img alt="Chinese Whispers" class="thumbnail" data-image-id="22472425025" src="//cdn.shopify.com/s/files/1/0239/3483/products/Chinese_Whispers_4_compact.jpg?v=1496781038"></a>
+										<div class="thumbnail-slider">
+
+											<!-- SLIDE COLUMN -->
+											<?php $slides = get_field('gallery');
+
+											if( $slides ){ 
+
+												foreach( $slides as $slide ){ ?>
+
+												<div class="slide">
+
+													<a data-image="<?php echo $slide['url']; ?>" data-zoom-image="<?php echo $slide['url']; ?>" href="#">
+
+														<img alt="Chinese Whispers" class="thumbnail" src="<?php echo $slide['url']; ?>">
+
+													</a>
+
+												</div>
+
+												<?php }; ?>
+
+												<?php }; ?>
+
+											</div>
+
 										</div>
 
 									</div>
 
-								</div>
+									<script type="text/javascript">
 
-							</div>
+										$(document).ready(function () {
 
-							<script type="text/javascript">
+											$('.bxslider').bxSlider({
+												pagerCustom: '#bx-pager'
+											});
 
-								$(document).ready(function () {
-
-									$('.bxslider').bxSlider({
-										pagerCustom: '#bx-pager'
-									});
-
-									$('.thumbnail-slider').bxSlider({
-										mode: 'vertical',
-										minSlides: 3,
-										slideMargin: 10,
-										infiniteLoop: false,
-										pager: false,
-										prevText: "",
-										nextText: "",
-										hideControlOnEnd: true
-									});    
+											$('.thumbnail-slider').bxSlider({
+												mode: 'vertical',
+												minSlides: 3,
+												slideMargin: 10,
+												infiniteLoop: false,
+												pager: false,
+												prevText: "",
+												nextText: "",
+												hideControlOnEnd: true
+											});    
 
 								 //initiate the plugin and pass the id of the div containing gallery images
 								 $("#9654330049").elevateZoom({
@@ -315,15 +284,15 @@ get_header(); ?>
 
 								<div id="product-description">
 
-									<h1 itemprop="name">Chinese Whispers</h1>
+									<h1 itemprop="name"><?php echo the_title(); ?></h1>
 
-									<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+									<div itemprop="offers" itemscope itemtype="">
 
 										<p id="product-price">
 
 											<span class="product-price" itemprop="price">
 
-												<span class="money">£65.00 GBP</span>
+												<span class="money">£<?php echo get_field('price'); ?></span>
 
 											</span>
 
@@ -331,99 +300,70 @@ get_header(); ?>
 
 										<meta content="GBP" itemprop="priceCurrency">
 
-										<link href="http://schema.org/InStock" itemprop="availability">
+										<link href="" itemprop="availability">
 
 										<form action="" method="post">
-
-											<div class="select">
-
-												<label>Size</label> 
-
-												<select name='id'>
-
-													<option data-sku="" selected="selected" value="">
-
-														X-Small - £65.00 GBP
-
-													</option>
-
-												</select>
-
-											</div>
 
 											<div class="swatch clearfix" data-option-index="0">
 
 												<h5>Size</h5>
 
-												<div class="swatch-element x-small available" data-value="X-Small">
+												<!-- SIZE -->
+												<?php $small = get_field('size_small'); 
 
-													<input checked id="swatch-0-x-small" name="option-0" type="radio" value="X-Small"> 
+												if($small){ ?>
 
-													<label for="swatch-0-x-small">
+												<div class="swatch-element x-small available" data-value="Small">
 
-														X-Small 
-
-														<img class="crossed-out" src="//cdn.shopify.com/s/files/1/0239/3483/t/89/assets/soldout.png?14449426372603660737">
-
-													</label>
-
-												</div>
-
-												<div class="swatch-element small available" data-value="Small">
-
-													<input id="swatch-0-small" name="option-0" type="radio" value="Small"> 
+													<input checked id="swatch-0-small" name="option-0" type="radio" value="Small"> 
 
 													<label for="swatch-0-small">
 
-														Small 
-
-														<img class="crossed-out" src="//cdn.shopify.com/s/files/1/0239/3483/t/89/assets/soldout.png?14449426372603660737">
+														Small
 
 													</label>
 
 												</div>
 
-												<div class="swatch-element medium available" data-value="Medium">
+												<?php } ?>
 
-													<input id="swatch-0-medium" name="option-0" type="radio" value="Medium"> 
+												<!-- MEDIUM -->
+												<?php $medium = get_field('size_medium'); 
+
+												if($medium){ ?>
+
+												<div class="swatch-element x-medium available" data-value="medium">
+
+													<input checked id="swatch-0-medium" name="option-0" type="radio" value="medium"> 
 
 													<label for="swatch-0-medium">
 
-														Medium 
-
-														<img class="crossed-out" src="//cdn.shopify.com/s/files/1/0239/3483/t/89/assets/soldout.png?14449426372603660737">
+														Medium
 
 													</label>
 
 												</div>
 
-												<div class="swatch-element large available" data-value="Large">
+												<?php } ?>
 
-													<input id="swatch-0-large" name="option-0" type="radio" value="Large"> 
+												<!-- LARGE -->
+												<?php $large = get_field('size_large'); 
+
+												if($large){ ?>
+
+												<div class="swatch-element x-large available" data-value="large">
+
+													<input checked id="swatch-0-large" name="option-0" type="radio" value="large"> 
 
 													<label for="swatch-0-large">
 
-														Large 
-
-														<img class="crossed-out" src="//cdn.shopify.com/s/files/1/0239/3483/t/89/assets/soldout.png?14449426372603660737">
+														Large
 
 													</label>
 
 												</div>
 
-												<div class="swatch-element x-large available" data-value="X-Large">
-
-													<input id="swatch-0-x-large" name="option-0" type="radio" value="X-Large">
-
-													<label for="swatch-0-x-large">
-
-														X-Large 
-
-														<img class="crossed-out" src="//cdn.shopify.com/s/files/1/0239/3483/t/89/assets/soldout.png?14449426372603660737">
-
-													</label>
-
-												</div>
+												<?php } ?>
 
 											</div>
 
@@ -457,11 +397,13 @@ get_header(); ?>
 
 						</div>
 
+					</div>
+
 				</div>
 
-			</div>
+				<?php };
 
-			<?php };
+			}; 
 
 			}; 
 

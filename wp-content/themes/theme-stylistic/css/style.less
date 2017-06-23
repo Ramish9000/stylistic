@@ -97,6 +97,7 @@ header, nav {
 .homepage-promo {
 
 	overflow: hidden;
+	background: white !important;
 
 	@media @sm {
 
@@ -124,6 +125,38 @@ header, nav {
 			
 		}
 
+	}
+
+}
+
+.homepage-promo:nth-of-type(1){
+
+	@media @lg {
+
+		padding-right: 12px;
+		
+	}
+
+	@media @md {
+
+		padding-right: 10px;
+		
+	}
+
+}
+
+.homepage-promo:nth-of-type(2){
+
+	@media @lg {
+
+		padding-left: 12px;
+		
+	}
+
+	@media @md {
+
+		padding-left: 10px;
+		
 	}
 
 }
@@ -334,10 +367,36 @@ header, nav {
 
 		@media @md {
 
-			margin-bottom: 100px;
+			margin-bottom: 60px;
+			
+		}
+
+		@media @sm {
+
+			margin-bottom: 60px;
 			
 		}
 
 	}
+
+}
+
+.SINGLE {
+
+	.zoomContainer {
+
+		@media @sm {
+
+			width: 280px !important;
+			
+		}
+
+	}
+
+}
+
+a:visited {
+
+	color: white !important;
 
 }

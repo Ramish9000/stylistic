@@ -16,9 +16,6 @@ get_header(); ?>
 
 <body class="gridlock index">
 
-	<!-- MENU -->
-	<?php require_once('templates/menu.php') ?>
-
 	<div class="page-wrap">
 
 		<!-- TOP MENU -->
